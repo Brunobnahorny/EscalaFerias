@@ -2,8 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import Lojas from './components/Lojas/Lojas';
-import LojaDetalhe from './components/Lojas/LojaDetalhe';
+import Stores from './components/Stores/Stores';
+import StoreDetails from './components/Stores/StoreDetails';
 import EmployeeDetails from './components/Employees/EmployeeDetails';
 
 
@@ -22,19 +22,19 @@ export default new Router({
             component: Login
         },
         {
-            path: '/Lojas',
-            nome: 'Lojas',
-            component: Lojas
+            path: '/Stores',
+            nome: 'Stores',
+            component: Stores
         },
         {
-            path: '/LojaDetalhe',
-            nome: 'LojaDetalhe',
-            component: LojaDetalhe
+            path: '/StoreDetails',
+            nome: 'StoreDetails',
+            component: StoreDetails
         },
         {
-            path: '/Lojadetalhe/:Loja_id',
-            nome: 'LojaDetalhe',
-            component: LojaDetalhe
+            path: '/StoreDetails/:Store_id',
+            nome: 'StoreDetails',
+            component: StoreDetails
         },
         {
             path: '/EmployeeDetails',

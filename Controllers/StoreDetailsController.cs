@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Escalav3.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class StoreDetailsController : Controller
     {
@@ -55,7 +55,7 @@ namespace Escalav3.Controllers
                 _data.Add(model);
                 if (await _data.SaveChangesAsync())
                 {
-                    return Created($"/{model.Id}", model);
+                    return Created($"/{model.StoreId}", model);
                 }
             }
             catch (System.Exception)
@@ -78,7 +78,7 @@ namespace Escalav3.Controllers
 
                 if (await _data.SaveChangesAsync())
                 {
-                    return Created($"/StoreDetails/{model.Id}", model);
+                    return Created($"/StoreDetails/{model.StoreId}", model);
                 }
             }
             catch (System.Exception)

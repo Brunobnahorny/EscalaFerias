@@ -1,0 +1,39 @@
+{
+    "employeeId": 1,
+    "name": "Bob Brown What",
+    "dateAdmission": "1998-04-21T00:00:00",
+    "baseSalary": 1000.0,
+    "storeId": 1,
+    "vacations": [
+        {
+            "vacationId": 1,
+            "initDate": "2020-09-25T00:00:00",
+            "vacationDays": 30
+        },
+        {
+            "vacationId": 24,
+            "initDate": "2018-10-13T00:00:00",
+            "vacationDays": 30
+        },
+        {
+            "vacationId": 25,
+            "initDate": "2018-10-01T00:00:00",
+            "vacationDays": 30
+        },
+        {
+            "vacationId": 26,
+            "initDate": "2018-09-12T00:00:00",
+            "vacationDays": 30
+        },
+        {
+            "vacationId": 27,
+            "initDate": "2018-09-15T00:00:00",
+            "vacationDays": 30
+        },
+        {
+            "vacationId": 28,
+            "initDate": "2018-07-01T00:00:00",
+            "vacationDays": 30
+        }
+    ]
+}

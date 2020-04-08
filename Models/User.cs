@@ -5,10 +5,11 @@ namespace Escalav3.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         [DataType(DataType.Password)]
         public string UserPwd { get; set; }
         public string UserName { get; set; }
+        public int StoreId { get; set; }
         public ICollection<Store> Stores { get; set; } = new List<Store>();
         public User()
         {
@@ -16,7 +17,7 @@ namespace Escalav3.Models
 
         public User(int userId, string userName, string userPwd)
         {
-            Id = userId;
+            UserId = userId;
             UserPwd = userPwd;
             UserName = userName;
         }

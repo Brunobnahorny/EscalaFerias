@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Escalav3.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class EmployeeDetailsController : Controller
     {
@@ -38,6 +38,7 @@ namespace Escalav3.Controllers
             try
             {
                 var result = await _repo.GetEmployeeByIdAsync(EmployeeId, true);
+                 if (result == null) return NotFound();
                 return Ok(result);
             }
             catch (System.Exception)
@@ -55,7 +56,7 @@ namespace Escalav3.Controllers
                 _repo.Add(model);
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Created($"/{model.Id}", model);
+                    return Created($"/{model.EmployeeId}", model);
                 }
             }
             catch (System.Exception)
@@ -76,9 +77,10 @@ namespace Escalav3.Controllers
 
                 _repo.Update(model);
 
+
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Created($"/EmployeeDetails/{model.Id}", model);
+                    return Created($"api/EmployeeDetails/{model.EmployeeId}", model);
                 }
             }
             catch (System.Exception)

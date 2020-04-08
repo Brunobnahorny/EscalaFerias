@@ -21,6 +21,7 @@ div {
   bottom: 0;
   width: 100%;
   height: 4em;
+  z-index: -2;
 }
 div p {
   text-align: center;

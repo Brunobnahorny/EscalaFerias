@@ -11,10 +11,13 @@
           <p>EscalaFácil</p>
         </li>
         <li>
-          <router-link to="/" as="a">Home</router-link>
+          <router-link  to="/" as="a">Home</router-link>
         </li>
         <li>
           <router-link to="/Login" as="a">Login</router-link>
+        </li>
+        <li>
+          <router-link to="/Stores" as="a">Stores</router-link>
         </li>
       </ul>
     </nav>
@@ -27,7 +30,9 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    
+  }
 };
 </script>
 
@@ -58,9 +63,10 @@ nav li a:hover {
   color: white;
 }
 .active {
-  background-color: #4caf50;
+  background-color: var(--cor-terciaria);
   color: white;
 }
+
 nav li img {
   position: absolute;
   left: 16px;

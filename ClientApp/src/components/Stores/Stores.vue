@@ -14,9 +14,9 @@
         <tbody>
           <tr v-for="(item, index) in stores" :key="index">
             <router-link
-              :to="'/LojaDetalhe/' + item.id"
+              :to="'/StoreDetails/' + item.storeId"
               tag="td" class=" clickable txt-center">
-              <strong>{{item.name}}</strong>
+              <strong>{{item.storeId}} <br> {{item.name}}</strong>
             </router-link>
             <td class="txt-center">
               <iframe
@@ -36,7 +36,7 @@
             <td  class="txt-left">
               <div v-for="(employees, eindex) in item.employees" :key="eindex">
                 <router-link
-              :to="'/EmployeeDetails/' + employees.id"
+              :to="'/EmployeeDetails/' + employees.employeeId"
               tag="div"  class="divemp clickable">
                 <strong>{{employees.name}}</strong>
                 </router-link>
@@ -55,6 +55,7 @@
 
 <script>
 import Titulo from "../../components/_shared/_titulo";
+import storesjson from "../../components/Data/stores.json";
 
 export default {
   components: {
@@ -62,84 +63,35 @@ export default {
   },
   data() {
     return {
-      stores: [
-        {
-          id: 1,
-          name: "St Monica",
-          location: "Av. Me. Benvenuta, 123 - Trindade, Florianópolis - SC",
-          user: null,
-          userId: 1,
-          employees: [
-            {
-              id: 1,
-              name: "Bob Brown",
-              dateAdmission: "1998-04-21T00:00:00",
-              baseSalary: 1000.0,
-              storeId: 1,
-              vacations: []
-            },
-            {
-              id: 2,
-              name: "Maria Green",
-              dateAdmission: "1979-12-31T00:00:00",
-              baseSalary: 3500.0,
-              storeId: 1,
-              vacations: []
-            },
-            {
-              id: 3,
-              name: "Alex Grey",
-              dateAdmission: "1988-01-15T00:00:00",
-              baseSalary: 2200.0,
-              storeId: 1,
-              vacations: []
-            },
-            {
-              id: 4,
-              name: "Martha Red",
-              dateAdmission: "1993-11-30T00:00:00",
-              baseSalary: 3000.0,
-              storeId: 1,
-              vacations: []
-            },
-            {
-              id: 5,
-              name: "Donald Blue",
-              dateAdmission: "2000-01-09T00:00:00",
-              baseSalary: 4000.0,
-              storeId: 1,
-              vacations: []
-            },
-            {
-              id: 6,
-              name: "Alex Pink",
-              dateAdmission: "1997-03-04T00:00:00",
-              baseSalary: 3000.0,
-              storeId: 1,
-              vacations: []
-            },
-            {
-              id: 13,
-              name: "XAle Punkaroo",
-              dateAdmission: "1997-03-04T00:00:00",
-              baseSalary: 3000.0,
-              storeId: 1,
-              vacations: []
-            },
-            {
-              id: 14,
-              name: "XAle Punkaroo",
-              dateAdmission: "1997-03-04T00:00:00",
-              baseSalary: 3000.0,
-              storeId: 1,
-              vacations: []
-            }
-          ]
-        }
-      ]
+      stores: this.StoreDateCorrect(storesjson)
     };
   },
-  methods: {}
+  /*
+  created() { //.NET Core + Entity Framework Back-End
+      this.$http
+        .get("http://localhost:5000/api/storedetails/")
+        .then(res => res.json())
+        .then(res => (this.stores = this.StoreDateCorrect(res)));
+  },
+  */  
+  methods: {
+    StoreDateCorrect: function(store) {
+      if (store) {
+        for (const key in store.employees) {
+          store.employees[key].dateAdmission = store.employees[
+            key
+          ].dateAdmission.slice(0, 10);
+
+          for (const key2 in store.employees[key].vacations) {
+            store.employees[key].vacations[key2].initDate = store.employees[
+              key
+            ].vacations[key2].initDate.slice(0, 10);
+          }
+        }
+        return store;
+      }
+    }
+  }
 };
 </script>
 

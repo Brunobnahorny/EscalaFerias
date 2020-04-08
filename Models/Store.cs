@@ -1,14 +1,21 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Escalav3.Models
 {
     public class Store
     {
-        public int Id { get; set; }
+        [Key]
+        public int StoreId { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-        public User User { get; set; }
+        [ForeignKey("User")]
+
+
         public int UserId { get; set; }
+        public User User { get; set; }
+
         public ICollection<Employee> Employees { get; set; } = new List<Employee>();
         public Store()
         {
@@ -16,7 +23,7 @@ namespace Escalav3.Models
 
         public Store(int storeId, string name, string location, User user)
         {
-            Id = storeId;
+            StoreId = storeId;
             Name = name;
             Location = location;
             User = user;

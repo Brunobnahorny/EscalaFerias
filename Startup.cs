@@ -22,6 +22,7 @@ namespace Escalav3
         {
             Configuration = configuration;
         }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public IConfiguration Configuration { get; }
 
@@ -32,13 +33,24 @@ namespace Escalav3
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.IgnoreNullValues = true;
-                });;
+                }); ;
             // using Microsoft.EntityFrameworkCore;
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlite("Data Source=Database.db"));
 
             services.AddScoped<SeedingService>();
             services.AddScoped<IDataService, DataService>();
+
+            services.AddCors(options =>
+        {
+            options.AddPolicy(MyAllowSpecificOrigins,
+            builder =>
+            {
+                builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod(); 
+            });
+        });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,16 +62,20 @@ namespace Escalav3
                 seedingService.Seed();
             }
 
-           // app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
+            
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(MyAllowSpecificOrigins);
+
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }

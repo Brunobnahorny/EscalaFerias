@@ -18,7 +18,7 @@ namespace Escalav3.Migrations
 
             modelBuilder.Entity("Escalav3.Models.Employee", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -34,7 +34,7 @@ namespace Escalav3.Migrations
                     b.Property<int>("StoreId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("EmployeeId");
 
                     b.HasIndex("StoreId");
 
@@ -43,7 +43,7 @@ namespace Escalav3.Migrations
 
             modelBuilder.Entity("Escalav3.Models.Store", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("StoreId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -56,7 +56,7 @@ namespace Escalav3.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("StoreId");
 
                     b.HasIndex("UserId");
 
@@ -65,8 +65,11 @@ namespace Escalav3.Migrations
 
             modelBuilder.Entity("Escalav3.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StoreId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
@@ -75,18 +78,18 @@ namespace Escalav3.Migrations
                     b.Property<string>("UserPwd")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Escalav3.Models.Vacation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("VacationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("InitDate")
@@ -95,7 +98,7 @@ namespace Escalav3.Migrations
                     b.Property<int>("VacationDays")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("VacationId");
 
                     b.HasIndex("EmployeeId");
 
@@ -124,9 +127,7 @@ namespace Escalav3.Migrations
                 {
                     b.HasOne("Escalav3.Models.Employee", "Employee")
                         .WithMany("Vacations")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployeeId");
                 });
 #pragma warning restore 612, 618
         }

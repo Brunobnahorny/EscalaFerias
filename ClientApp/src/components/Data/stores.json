@@ -1,0 +1,59 @@
+[
+    {
+        "storeId": 1,
+        "name": "St Monica",
+        "location": "Av. Madre Benvenuta",
+        "userId": 1,
+        "user": null,
+        "employees": [
+            {
+                "employeeId": 1,
+                "name": "Bob Brown What",
+                "dateAdmission": "1998-04-21T00:00:00",
+                "baseSalary": 1000.0,
+                "storeId": 1,
+                "vacations": []
+            },
+            {
+                "employeeId": 2,
+                "name": "Maria Green",
+                "dateAdmission": "1979-12-31T00:00:00",
+                "baseSalary": 3500.0,
+                "storeId": 1,
+                "vacations": []
+            },
+            {
+                "employeeId": 3,
+                "name": "Alex Grey",
+                "dateAdmission": "1988-01-15T00:00:00",
+                "baseSalary": 2200.0,
+                "storeId": 1,
+                "vacations": []
+            },
+            {
+                "employeeId": 4,
+                "name": "Martha Red",
+                "dateAdmission": "1993-11-30T00:00:00",
+                "baseSalary": 3000.0,
+                "storeId": 1,
+                "vacations": []
+            },
+            {
+                "employeeId": 5,
+                "name": "Donald Blue",
+                "dateAdmission": "2000-01-09T00:00:00",
+                "baseSalary": 4000.0,
+                "storeId": 1,
+                "vacations": []
+            },
+            {
+                "employeeId": 6,
+                "name": "Alex Pink",
+                "dateAdmission": "1997-03-04T00:00:00",
+                "baseSalary": 3000.0,
+                "storeId": 1,
+                "vacations": []
+            }
+        ]
+    }
+]

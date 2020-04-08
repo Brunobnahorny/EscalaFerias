@@ -33,37 +33,37 @@ namespace Escalav3.Data
         }
 
         //Store
-        public async Task<Store[]> GetAllStoresAsync(bool includeVacation = false)
+        public async Task<Store[]> GetAllStoresAsync(bool includeEmployees = false)
         {
             IQueryable<Store> query = _context.Stores;
-            if (includeVacation)
+            if (includeEmployees)
             {
                 query = query.Include(a => a.Employees);
             }
-            query = query.AsNoTracking().OrderBy(a => a.Id);
+            query = query.AsNoTracking().OrderBy(a => a.StoreId);
             return await query.ToArrayAsync();
         }
 
-        public async Task<Store> GetStoreByIdAsync(int storeId, bool includeVacation = false)
+        public async Task<Store> GetStoreByIdAsync(int storeId, bool includeEmployees = false)
         {
             IQueryable<Store> query = _context.Stores;
-            if (includeVacation)
+            if (includeEmployees)
             {
-                query = query.Include(a => a.Employees);
+                query = query.Include(a => a.Employees).ThenInclude(a => a.Vacations).AsNoTracking();
             }
-            query = query.Where(a => a.Id == storeId);
+            query = query.Where(a => a.StoreId == storeId).AsNoTracking();
             return await query.FirstOrDefaultAsync();
         }
 
         //Employee
-        public async Task<Employee[]> GetAllEmployeesAsync(bool includeVacation = false)
+        public async Task<Employee[]> GetAllEmployeesAsync(bool includeVacation = true)
         {
             IQueryable<Employee> query = _context.Employees;
             if (includeVacation)
             {
                 query = query.Include(a => a.Vacations);
             }
-            query = query.AsNoTracking().OrderBy(a => a.Id);
+            query = query.AsNoTracking().OrderBy(a => a.EmployeeId);
             return await query.ToArrayAsync();
         }
 
@@ -74,7 +74,7 @@ namespace Escalav3.Data
             {
                 query = query.Include(a => a.Vacations);
             }
-            query = query.Where(a => a.Id == employeeId);
+            query = query.AsNoTracking().Where(a => a.EmployeeId == employeeId);
             return await query.FirstOrDefaultAsync();
         }
 
@@ -82,17 +82,15 @@ namespace Escalav3.Data
         public async Task<Vacation[]> GetAllVacationsAsync()
         {
             IQueryable<Vacation> query = _context.Vacations;
-            query = query.AsNoTracking().OrderBy(a => a.Id);
+            query = query.AsNoTracking().OrderBy(a => a.VacationId);
             return await query.ToArrayAsync();
         }
 
         public async Task<Vacation> GetVacationByIdAsync(int VacationId)
         {
             IQueryable<Vacation> query = _context.Vacations;
-            query = query.Where(a => a.Id == VacationId);
+            query = query.AsNoTracking().Where(a => a.VacationId == VacationId);
             return await query.FirstOrDefaultAsync();
         }
-
-
     }
 }
