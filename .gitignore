@@ -17,6 +17,7 @@
 mono_crash.*
 
 # Build results
+.vscode
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -27,7 +28,9 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
+bin
 [Oo]bj/
+obj
 [Ll]og/
 
 # Visual Studio 2015/2017 cache/options directory
@@ -350,3 +353,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+bin/Debug/netcoreapp3.1
+obj/Debug
